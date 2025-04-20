@@ -1,0 +1,83 @@
+.movie-list-container {
+  position: relative;
+  min-height: 400px;
+  background: linear-gradient(to right, #fef8fd, #ffffff);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.actions {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table th, table td {
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.movie-poster {
+  width: 52px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mat-column-select {
+  width: 48px;
+}
+
+.mat-column-poster {
+  width: 80px;
+}
+
+.mat-column-year {
+  width: 100px;
+}
+
+.mat-column-actions {
+  width: 70px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border-radius: 12px;
+}
+
+.mat-header-cell {
+  background-color: #8e44ad;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #fef3f1;
+}
