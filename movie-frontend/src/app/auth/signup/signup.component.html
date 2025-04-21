@@ -44,16 +44,6 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Confirm Password</mat-label>
-            <input title="conf-password" matInput formControlName="confirmPassword" type="password" required>
-            <mat-error *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">
-              Please confirm your password
-            </mat-error>
-            <mat-error *ngIf="signupForm.errors?.['mismatch']">
-              Passwords do not match
-            </mat-error>
-          </mat-form-field>
 
           <button
             mat-raised-button

@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +23,13 @@ public class Movie {
     private String director;
     private String plot;
     private String poster;
+
     @Column(nullable = false, unique = true)
     private String imdbId;
+
+    @Column(name = "is_deleted", nullable = false)
+    @Builder.Default
+    private Boolean isDeleted = false;
 
     public Movie(String title, String director, String year, String genre, String plot, String imdbId, String poster) {
         this.title = title;
@@ -35,5 +39,6 @@ public class Movie {
         this.plot = plot;
         this.imdbId = imdbId;
         this.poster = poster;
+        this.isDeleted = false;
     }
 }

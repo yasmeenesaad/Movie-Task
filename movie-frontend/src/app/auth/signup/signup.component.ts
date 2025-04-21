@@ -23,22 +23,15 @@ export class SignupComponent {
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
-    }, { validator: this.passwordMatchValidator });
-  }
-
-  passwordMatchValidator(g: FormGroup) {
-    return g.get('password')?.value === g.get('confirmPassword')?.value
-      ? null
-      : { mismatch: true };
+      lastName: ['', [Validators.required]]
+    }, );
   }
 
   onSubmit(): void {
     if (this.signupForm.valid) {
       this.loading = true;
       const { username, password, firstName, lastName } = this.signupForm.value;
-      
+
       this.authService.signup(username, password, firstName, lastName).subscribe({
         next: () => {
           this.snackBar.open('Registration successful! Please login.', 'Close', { duration: 5000 });
