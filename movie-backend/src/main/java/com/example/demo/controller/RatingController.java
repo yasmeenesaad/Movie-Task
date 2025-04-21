@@ -1,14 +1,10 @@
 package com.example.demo.controller;
 
-
 import com.example.demo.dto.RatingRequest;
-import com.example.demo.entity.Rating;
 import com.example.demo.service.RatingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/ratings")
@@ -22,25 +18,29 @@ public class RatingController {
     }
 
     @PostMapping
-    public ResponseEntity<Rating> rateMovie(@RequestBody RatingRequest request, Authentication authentication) {
-        String username = authentication.getName();
-        return ResponseEntity.ok(ratingService.rateMovie(request, username));
+    public ResponseEntity<?> rateMovie(@RequestBody RatingRequest request, Authentication authentication) {
+        return ResponseEntity.ok(ratingService.rateMovie(request, authentication.getName()));
     }
 
     @GetMapping("/{movieId}")
-    public ResponseEntity<Integer> getMovieRating(@PathVariable Long movieId, Authentication authentication) {
+    public ResponseEntity<?> getMovieRating(@PathVariable Long movieId, Authentication authentication) {
         return ResponseEntity.ok(ratingService.getMovieRating(movieId, authentication.getName()).getRating());
     }
 
-    @PutMapping()
-    public void updateRating( @RequestBody RatingRequest request, Authentication authentication) {
-        String username = authentication.getName();
-        ratingService.updateRating(request, username);
+    @GetMapping("/average/{movieId}")
+    public ResponseEntity<Double> getAverageRating(@PathVariable Long movieId) {
+        return ResponseEntity.ok(ratingService.getAverageRating(movieId));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateRating(@RequestBody RatingRequest request, Authentication authentication) {
+        ratingService.updateRating(request, authentication.getName());
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{movieId}")
-    public void deleteRating(@PathVariable Long movieId, Authentication authentication) {
-        String username = authentication.getName();
-        ratingService.deleteRating(movieId, username);
+    public ResponseEntity<?> deleteRating(@PathVariable Long movieId, Authentication authentication) {
+        ratingService.deleteRating(movieId, authentication.getName());
+        return ResponseEntity.ok().build();
     }
 }

@@ -4,12 +4,26 @@ import com.example.demo.entity.Movie;
 import com.example.demo.entity.Rating;
 import com.example.demo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface RatingRepository extends JpaRepository<Rating, Long> {
-    List<Rating> findByMovie(Movie movie);
-    List<Rating> findByUser(User user);
+    List<Rating> findByMovieAndIsDeletedFalse(Movie movie);
+    List<Rating> findByUserAndIsDeletedFalse(User user);
+    Optional<Rating> findByUserAndMovieAndIsDeletedFalse(User user, Movie movie);
+
+    // For internal use (includes deleted ratings)
     Optional<Rating> findByUserAndMovie(User user, Movie movie);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Rating r SET r.isDeleted = true WHERE r.id = :id AND r.user = :user")
+    void softDelete(Long id, User user);
+
+    @Query("SELECT COALESCE(AVG(r.rating), 0) FROM Rating r WHERE r.movie = :movie AND r.isDeleted = false")
+    Double calculateAverageRatingByMovie(Movie movie);
 }

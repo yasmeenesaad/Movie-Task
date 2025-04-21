@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +24,9 @@ public class Rating {
     private Movie movie;
 
     @Column(nullable = false)
-    private int rating; // Range: 1 to 5
-}
+    private int rating; // Range: 1 to 100
 
+    @Column(name = "is_deleted", nullable = false)
+    @Builder.Default
+    private Boolean isDeleted = false;
+}
