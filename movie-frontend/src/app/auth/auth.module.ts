@@ -8,20 +8,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import {MatIcon} from "@angular/material/icon";
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    RouterModule.forChild([
-      { path: '', component: LoginComponent },
-      { path: 'signup', component: SignupComponent }
-    ])
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        RouterModule.forChild([
+            {path: '', component: LoginComponent},
+            {path: 'signup', component: SignupComponent}
+        ]),
+        MatIcon
+    ]
 })
 export class AuthModule { }

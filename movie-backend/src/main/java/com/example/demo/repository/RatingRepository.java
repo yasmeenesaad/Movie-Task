@@ -24,6 +24,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
     @Query("UPDATE Rating r SET r.isDeleted = true WHERE r.id = :id AND r.user = :user")
     void softDelete(Long id, User user);
 
+//    COALESCE returns the first non-null value
     @Query("SELECT COALESCE(AVG(r.rating), 0) FROM Rating r WHERE r.movie = :movie AND r.isDeleted = false")
     Double calculateAverageRatingByMovie(Movie movie);
 }
