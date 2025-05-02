@@ -8,7 +8,7 @@ import { Movie,OmdbMovie, OmdbSearchResponse } from '../models/movie.model';
   providedIn: 'root'
 })
 export class MovieService {
-  
+
   private readonly API_URL = `${environment.apiUrl}/api`;
 
   constructor(private http: HttpClient) {}
@@ -29,14 +29,6 @@ export class MovieService {
     return this.http.get<{ content: Movie[], totalElements: number }>(`${this.API_URL}/movies`, { params });
   }
 
-  addMovie(movie: Movie): Observable<Movie> {
-    return this.http.post<Movie>(`${this.API_URL}/movies/`, movie);
-  }
-
-  deleteMovie(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.API_URL}/movies/${id}`);
-  }
-
   batchAddMovies(movies: Movie[]): Observable<Movie[]> {
     return this.http.post<Movie[]>(`${this.API_URL}/movies/batch-add`, movies);
   }
@@ -44,4 +36,8 @@ export class MovieService {
   batchDeleteMovies(ids: number[]): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/movies/batch-delete`, { body: ids });
   }
+  getAverageRating(movieId: number): Observable<number> {
+    return this.http.get<number>(`${this.API_URL}/movies/${movieId}/average-rating`);
+  }
+
 }

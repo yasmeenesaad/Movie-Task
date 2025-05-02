@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dto.MovieRequest;
 import com.example.demo.entity.Movie;
 import com.example.demo.repository.MovieRepository;
+import com.example.demo.repository.RatingRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,9 +19,11 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     private final MovieRepository movieRepository;
+    private final RatingRepository ratingRepository;
 
-    public MovieService(MovieRepository movieRepository) {
+    public MovieService(MovieRepository movieRepository, RatingRepository ratingRepository) {
         this.movieRepository = movieRepository;
+        this.ratingRepository = ratingRepository;
     }
 
     public List<Movie> getAllMovies() {
@@ -132,5 +135,8 @@ public class MovieService {
         List<Movie> movies = movieRepository.findAllById(movieIds);
         movies.forEach(movie -> movie.setIsDeleted(true));
         movieRepository.saveAll(movies);
+    }
+    public Double getAverageRating(Long movieId) {
+        return ratingRepository.findAverageRatingByMovieId(movieId);
     }
 }

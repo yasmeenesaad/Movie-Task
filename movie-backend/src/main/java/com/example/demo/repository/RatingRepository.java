@@ -6,6 +6,7 @@ import com.example.demo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -27,4 +28,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 //    COALESCE returns the first non-null value
     @Query("SELECT COALESCE(AVG(r.rating), 0) FROM Rating r WHERE r.movie = :movie AND r.isDeleted = false")
     Double calculateAverageRatingByMovie(Movie movie);
+
+    @Query("SELECT AVG(r.rating) FROM Rating r WHERE r.movie.id = :movieId")
+    Double findAverageRatingByMovieId(@Param("movieId") Long movieId);
 }

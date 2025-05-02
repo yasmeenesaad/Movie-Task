@@ -62,4 +62,11 @@ public class MovieController {
         movieService.batchDeleteMovies(movieIds);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{movieId}/average-rating")
+    public ResponseEntity<Double> getAverageRating(@PathVariable Long movieId) {
+        System.out.println("Fetching average rating for movie: " + movieId);
+        Double avg = movieService.getAverageRating(movieId);
+        return ResponseEntity.ok(avg != null ? avg : 0.0);
+    }
+
 }

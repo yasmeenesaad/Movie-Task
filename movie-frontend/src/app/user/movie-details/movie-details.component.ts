@@ -47,7 +47,7 @@ export class MovieDetailsComponent implements OnInit {
           poster: omdbMovie.Poster,
         };
 
-        
+
         this.loadUserRating(id);
         this.loading = false;
       },

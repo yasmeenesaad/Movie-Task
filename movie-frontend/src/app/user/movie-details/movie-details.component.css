@@ -103,3 +103,74 @@
     font-size: 1.8rem;
   }
 }
+.star-icon {
+  cursor: pointer;
+  font-size: 32px;
+  color: #d19c97; /* you can customize this */
+}
+.star-icon.filled {
+  color: gold;
+}
+.rating-section {
+  margin-top: 20px;
+  overflow: visible; /* Ensure contents aren't clipped */
+}
+
+.rating-controls.stars {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* allow wrapping if needed */
+  gap: 8px;
+  overflow: visible;
+  padding: 10px 0;
+}
+
+.star-icon {
+  cursor: pointer;
+  font-size: 36px;
+  color: #d19c97;
+  line-height: 1; /* prevent vertical cutoff */
+}
+
+.star-icon.filled {
+  color: gold;
+}
+
+.rating-value {
+  font-size: 16px;
+  margin-left: 10px;
+  color: #333;
+}
+.movie-details, .info-container, .movie-details-container {
+  overflow: visible;
+}
+.rating-section {
+  margin-top: 20px;
+  overflow: visible !important;
+}
+
+.rating-controls.stars {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.star-icon {
+  font-size: 36px !important;
+  line-height: normal !important;
+  height: auto !important;
+  width: auto !important;
+  color: #d19c97;
+  cursor: pointer;
+}
+
+.star-icon.filled {
+  color: gold;
+}
+mat-icon.star-icon {
+  height: auto !important;
+  overflow: visible !important;
+}
