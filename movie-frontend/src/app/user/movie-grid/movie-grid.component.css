@@ -88,3 +88,9 @@ mat-card-content p {
   font-size: 0.8rem;
   margin-top: 12px;
 }
+
+mat-card {
+  aspect-ratio: unset;
+  display: flex;
+  flex-direction: column;
+}
